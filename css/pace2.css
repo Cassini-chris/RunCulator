@@ -1,0 +1,74 @@
+/* just for preview */
+.container {
+    padding-top: 40px;
+}
+
+body {
+ font-family: 'Righteous', cursive;
+}
+
+span {
+ font-family: 'Courier New', cursive;
+}
+
+@media screen and (max-width: 809px) {
+/*small*/
+  #child_container{
+    width: 100%;
+  }
+
+  #pace_title  {
+      font-size:50px ;
+      display:none;
+  }
+  #parent_container {
+      margin-top:0px
+  }
+
+  #duration
+  {
+      height:150px;
+  }
+
+  #distance
+  {
+      height:150px;
+  }
+}
+
+@media screen and (min-width: 809px) {
+/*big*/
+  #child_container{
+    width: 50%;
+  }
+
+  #pace_title {
+      font-size:100px ;
+  }
+
+  #parent_container {
+      margin-top:15px
+  }
+}
+
+.input-icon {
+  position: relative;
+}
+
+.input-icon > i {
+  position: absolute;
+  display: block;
+  transform: translate(0, -50%);
+  top: 65%;
+  pointer-events: none;
+  width: 100%;
+  text-align: center;
+  font-style: normal;
+  padding-left: 110px
+}
+
+.input-icon-right > input {
+  padding-left: 0;
+  padding-right: 28px;
+  text-align: center;
+}
