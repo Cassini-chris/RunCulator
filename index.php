@@ -1,13 +1,12 @@
+<?php error_reporting(0);?>
+
 <!DOCTYPE html>
 <html lang="en">
 
   <head>
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <title>RunCulator</title>
-
     <link rel="apple-touch-icon" sizes="180x180" href="_images/favicon/apple-touch-icon.png">
     <link rel="icon" type="_images/favicon/png" sizes="32x32" href="_images/favicon/favicon-32x32.png">
     <link rel="icon" type="_images/png" sizes="16x16" href="_images/favicon/favicon-16x16.png">
@@ -16,242 +15,379 @@
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
 
-    <!-- Bootstrap ORIGINAL -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="_javascript/picker.js"></script>
 
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <!-- Font -->
     <link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- Custom -->
     <link href="css/pace2.css" rel="stylesheet" type="text/css" >
+    <!-- Analytics -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      <?php include_once("_includes/analytics.php") ?>
 
-    <?php // Variables
-    if(isset($_GET['time_hour'])) {$time_hour = $_GET['time_hour'];} else {$time_hour=0;}
-    if(isset($_GET['time_min'])) {$time_min = $_GET['time_min'];} else {$time_min=0;}
-    if(isset($_GET['time_sec'])) {$time_sec = $_GET['time_sec'];} else {$time_sec=0;}
 
-    if(isset($_GET['distance'])) {$distance = $_GET['distance'];} else {$distance=0;}
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-3842615578259450",
+    enable_page_level_ads: true
+  });
+</script>
 
-    if(isset($_GET['pace_hour'])) {$pace_hour = $_GET['pace_hour'];} else {$pace_hour=0;}
-    if(isset($_GET['pace_min'])) {$pace_min = $_GET['pace_min'];} else {$pace_min=0;}
-    if(isset($_GET['pace_sec'])) {$pace_sec = $_GET['pace_hour'];} else {$pace_sec=0;}
-
-    if(isset($_GET['metric_distance'])) {$metric_distance = $_GET['metric_distance'];
-     if( $metric_distance=='km'){$metric_distance = 1;};
-     if( $metric_distance=='mi'){$metric_distance = 1.60934;};
-     } else {$metric_distance=1;}
-
-     if(isset($_GET['metric_pace'])) {$metric_pace = $_GET['metric_pace'];
-      if( $metric_pace=='km'){$metric_pace = 1;};
-      if( $metric_pace=='mi'){$metric_pace = 1.60934;};
-      } else {$metric_pace=1;}
-
-    $total_time = (($time_hour * 3600) + ($time_min * 60) + ($time_sec));
-    if($distance==0){$distance=1;
-    $pace_kmh = gmdate('H:i:s',($total_time / ($distance *$metric_distance)));
-    $pace_mih = gmdate('H:i:s',(($total_time / ($distance*$metric_distance))*$metric_pace));} else {
-    $pace_kmh = gmdate('H:i:s',($total_time / ($distance *$metric_distance)));
-    $pace_mih = gmdate('H:i:s',(($total_time / ($distance*$metric_distance))*$metric_pace));}
-
-    ?>
+    <style>
+      a:link {color:white; text-decoration: none;}
+      a:visited {text-decoration: none}
+      a:hover {text-decoration: underline;}
+      a:active {text-decoration: underline;}
+    </style>
 
 </head>
 
-<body background="_images/background.jpg">
-
-    <nav class="navbar">
-      <div class="container-fluid"  >
-        <div class="navbar-header">
-          <a  style="color:white"class="navbar-brand" href="http://www.runculator.com">RunCulator</a>
-        </div>
-      </div>
-    </nav>
+<body background="_images/background.jpg" style="background-size:cover">
+<!-- Navigation !----------------------->
+ <?php include("_includes/navigation.php") ?>
+  <?php include("_includes/pa_antiadblock_2902714.php") ?>
+    <?php include("_includes/pa_antiadblock_2902793.php") ?>
+        <?php include("_includes/pa_antiadblock_2902878.php") ?>
 
 <!-- HEADING TITLE !----------------------->
 <div id="parent_container">
-   <h1 id="pace_title"style="text-align: center;  text-shadow: 2px 2px #0099ff;"> Pace Calculator</h1>
-  <form action="" method="get" id="main_form" name="main_form">
+
+
+
+
+
+   <h1 id="pace_title"style="text-align: center;  text-shadow: 2px 2px #0099ff;"> Sports Calculator</h1>
+
       <div id="child_container"
        style="
         margin:auto;  border: 4px solid #0099ff; background:white;
-        border-radius: 50px 20px;
+        border-radius: 30px 10px;
         background-color: rgb(0, 0, 0);
-        /* RGBa with 0.6 opacity */
         background-color: rgba(0, 0, 0, 0.6);
-        /* For IE 5.5 - 7*/
         filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);
-        /* For IE 8*/
         -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";
        ">
 
+<div style="padding:5px 0 0 15px">
+  <h1 style="color:#F0FFFF"> Why RunCulator</h1>
+  <p style="color:#F0FFFF">  RunCulator is a website primarily for athletes that provides an Easy to use and Mobile Friendly
+    </br>>> Pace, Distance, Duration Calculator for runners and cyclists.
+    </br>
+  </p>
+<div id="textt">
+  <h1 style="color:#F0FFFF">Who Uses RunCulator?</h1/>
+  <p style="color:#F0FFFF">Sports calculators are useful for both new athletes and professional athletes.</p>
+  <h1 style="color:#F0FFFF">What Can You Calculate with RunCulator?</h1>
+  <p style="color:#F0FFFF">
+    (1) Determine how fast your pace should be if you have a <a href="duration.php">certain FINISH TIME</a>.</br>
+    (2) Determine the <a href="pace.php">PACE</a> of your workout.</br>
+    (3) Determine the possibe <a href="distance.php">DISTANCE</a> of your run.</br>
+    <a class="scroll"> (4) <u> Convert</u> mph to km/h // km/h to mph. </a></br>
 
-<!-- DURATION !!!!!!!!!!!!!!!!!!!!!!!!!!!!----------------------->
-<div id="duration" style="width:100%">
-    <div style="width:80%; margin:auto; color:white;  padding-top:15px">
-        <span style="font-weight:bold; font-size:20px">Duration</span>
-    </div>
+<script>
+    $(".scroll").click(function() {
+        $('html,body').animate({
+            scrollTop: $(".second").offset().top},
+            'slow');
+    });
 
-    <div id="time" style="width:80%; margin:auto;height:150px; color:white">
-        <div style="padding:0px 0  5px 0; float:left;  width:33%;"><span style="">Hours</span>
-            <input id="hours_field" class="form-control" type="number"
-                   onKeyPress="return check(event,value)" onInput="checkLength_hours()"
-                   min="0" max="99" maxlength="2"
-                   name="time_hour"value="<?php echo ($time_hour)?>"
-                   style=" height:80px; font-size:40px; display: block; margin:0 auto; text-align:center">
-        </div>
+    </script>
 
-        <div style="padding:0 2px  5px 2px;float:left; width:33%;"><span style="">Minutes</span>
-            <input id="minutes_field" class="form-control" type="number"
-                   onKeyPress="return check(event,value)" onInput="checkLength_minutes()"
-                   min="0" max="59" maxlength="2" name="time_min"
-                   value="<?php echo ($time_min)?>"
-                   style=" height:80px; font-size:40px; display: block; margin:0 auto; text-align:center">
-        </div>
-
-        <div style="padding:0 0  5px 0; float:left;  width:33%;"><span style="">Seconds</span>
-            <input id="seconds_field" class="form-control" type="number"
-                   onKeyPress="return check(event,value)" onInput="checkLength_seconds()"
-                   min="0" max="59" maxlength="2" name="time_sec" value="<?php echo ($time_sec)?>"
-                   style=" height:80px; font-size:40px; display: block; margin:0 auto; text-align:center">
-        </div>
-    </div>
+    <a style="color:#f6ffc9" href="wr.php"> >> Check Eliud Kipchoge World Record Marathon Pace.</a>
+    </br>
+  </p>
+</div>
+</div>
 </div>
 
-<!--DISTANCE !!!!!-------------------------->
-<div id="distance">
-  <div style="width:80%; margin:auto; color:white" class="input-icon input-icon-right">
-      <label for="inputState">
-          <span style="font-weight:bold; font-size:20px">Distance</span>
-      </label>
-      <i id="distance_legende" style="color:black; font-size:40px; color:grey"><?php if($metric_distance==1){echo ("km");} else{echo ("mi");} ?></i>
-      <input onKeyPress="return check(event,value)"
-             onInput="checkLength_distance()" id="distance_input"
-             type="number"step="any"  name="distance" class="form-control" min="0" max="9999"
-             placeholder="e.g. 10"
-             style="height:80px; font-size:40px; display: block; margin : 0 auto; text-align:center"
-             value="<?php echo $distance ?>">
+<div id="child_container"
+style="
+ margin:20px auto auto auto;  border: 4px solid #0099ff; background:white;
+ border-radius: 30px 10px;
+ background-color: rgb(0, 0, 0);
+ background-color: rgba(0, 0, 0, 0.6);
+ filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);
+ -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)"">
+
+  <h3 style="text-align: center; color:#F0FFFF">Select calculator...</h3>
+
+<div class="row">
+  <div class="col-sm" style="text-align: center">
+   <a style="text-align:center;  width:300px; margin:10px" class="btn btn-primary"  href="distance.php">DISTANCE</a>
   </div>
 
+  <div class="col-sm" style="text-align: center">
+   <a style="text-align:center;  width:300px; margin:10px" class="btn btn-primary"  href="pace.php">PACE</a>
+  </div>
 
- <div class="btn-group" data-toggle="buttons" style="display:block; margin: 0 auto; width:80%; text-align:center; height:80px" >
-   <label id="metric_distance_kilometers_label"class="btn btn-primary <?php if($metric_distance==1) {?> active <?php ;} ?>"style="width:50%; ">
-     <input id="metric_distance_kilometers" type="radio" name="metric_distance"
-            value="km" <?php if($metric_distance==1) {?> checked <?php ;} ?>> Kilometers<br>
-   </label>
-
-   <label id="metric_distance_miles_label" class="btn btn-primary <?php if($metric_distance==1.60934) {?> active <?php ;} ?>" style="width:50%;">
-     <input  id="metric_distance_miles" type="radio" name="metric_distance"
-             value="mi" <?php if($metric_distance==1.60934) {?> checked <?php ;} ?>> Miles
-   </label>
+  <div class="col-sm" style="text-align: center">
+   <a style="text-align:center;  width:300px; margin:10px" class="btn btn-primary"  href="duration.php">DURATION</a>
+  </div>
+  </div>
  </div>
-</div>
 
 
-<!--PACE !!!!!-------------------------->
-<div id="pace">
+ <!-- Advertisement------------------------------------------------------------------------------------------------->
+ <!-- Advertisement------------------------------------------------------------------------------------------------->
+ <script type="text/javascript" src="//deloplen.com/apu.php?zoneid=2902722" async data-cfasync="false"></script>
 
-    <div style="width:80%; margin:auto; color:white">
-       <label for="inputState"><span style="font-weight:bold; font-size:20px">Pace</span></label>
-       <input type="text" name="pace" id="pace_field" class="form-control"
-              placeholder="10" style="height:80px; font-size:40px; display:block; margin:0 auto; text-align:center"
-              value="<?php echo ($pace_mih) ; if($metric_pace==1){?> km/h <?php ;}else {?> mi/h <?php ;}?>" disabled>
+ <div id="child_container"
+  style="
+  margin:20px auto auto auto;  border: 4px solid #0099ff; background:white;
+  color:white;
+  border-radius: 10px 10px;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.6);
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);
+  -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)"">
+
+
+  <div class="row">
+    <div class="col-sm" style="text-align: center; padding:8px 15px 8px 15px">
+     <h3 style="margin:2px; padding:4px">
+     <a href="http://deloplen.com/afu.php?zoneid=2902726" target="_blank">To support RunCulator, please click on the <u>Advertisement</u></h3></a>
+    </div>
+   </div>
+ </div>
+
+ <!-- Advertisement------------------------------------------------------------------------------------------------->
+ <!-- Advertisement------------------------------------------------------------------------------------------------->
+
+
+
+
+ <!-- Marathon Major------------------------------------------------------------------------------------------------->
+
+
+ <div id="child_container"
+  style="
+  margin:20px auto auto auto;  border: 4px solid #0099ff; background:white;
+  color:white;
+  border-radius: 10px 10px;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.6);
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);
+  -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)"">
+
+<!-- Heading----------->
+  <div class="row" style="margin:auto" >
+    <div class="col" style="text-align: center; padding:8px 15px 8px 15px">
+      <h3>Major Series</h3>
     </div>
 
-    <div class="btn-group" data-toggle="buttons" style="display: block; margin : 0 auto; width:80%; text-align:center; height:80px" >
-        <label class="btn btn-primary <?php if($metric_pace==1) {?> active <?php ;} ?>"style="width:50%;">
-          <input style=" font-size:40px; display: block; margin:0 auto; width:80%; text-align:center"
-                 type="radio" name="metric_pace" value="km" <?php if($metric_pace==1) {?> checked <?php ;} ?>> Kilometers<br>
-        </label>
+    <div class="col" style="text-align: center; padding:8px 15px 8px 15px">
+      <h3>Date</h3>
+    </div>
 
-        <label  id="radio_pace_miles_label" class="btn btn-primary <?php if($metric_pace==1.60934) {?> active <?php ;} ?>" style="width:50%;">
-          <input id="radio_pace_miles" type="radio" name="metric_pace" value="mi" <?php if($metric_pace==1.60934) {?> checked <?php ;} ?> > Miles
-        </label>
+    <div class="col" style="text-align: center; padding:8px 15px 8px 15px">
+      <h3>Days left</h3>
     </div>
   </div>
 
-<script type="text/javascript">
+<!-- Berlin----------->
+  <div class="row" style="margin:auto">
+    <div class="col" style="text-align: center; padding:8px 15px 8px 15px">
+       <p style="color:blue"><a href="https://www.bmw-berlin-marathon.com/" ><u>Berlin Marathon</u> </a></p>
+    </div>
+    <div class="col" style="text-align: center; padding:8px 15px 8px 15px">
+      <p>Sep, 27, 2020 </p>
+    </div>
+    <div class="col" style="text-align: center; padding:8px 15px 8px 15px">
+     <p id="Berlin_date"></p>
+    </div>
+   </div>
 
-//////////Jquery for button click on radio buttons (use label)
-//Distance Miles Radio Button
-$("#metric_distance_miles_label" ).click(function() {
-document.getElementById("distance_legende").innerHTML = 'mi';
-// alert( "Handler for .click() called." );
+<!-- Boston----------->
+        <div class="row" style="margin:auto">
+          <div class="col" style="text-align: center; padding:8px 15px 8px 15px">
+            <p style=""><a href="https://www.baa.org/races/boston-marathon" ><u> Boston Marathon </u></a></p>
+          </div>
+          <div class="col" style="text-align: center; padding:8px 15px 8px 15px">
+                   <p>Apr, 20, 2020 </p>
+          </div>
+          <div class="col" style="text-align: center; padding:8px 15px 8px 15px">
+           <p id="Boston_date"></p>
+          </div>
+         </div>
+
+ <!-- NYC----------->
+         <div class="row" style="margin:auto">
+           <div class="col" style="text-align: center; padding:8px 15px 8px 15px">
+                    <p style="color:blue"><a href="https://www.nyrr.org/tcsnycmarathon" ><u> New York Marathon</u> </a></p>
+           </div>
+           <div class="col" style="text-align: center; padding:8px 15px 8px 15px">
+                    <p>Nov, 01, 2020 </p>
+           </div>
+           <div class="col" style="text-align: center; padding:8px 15px 8px 15px">
+            <p id="NewYork_date"></p>
+           </div>
+          </div>
+
+<!-- Tokyo----------->
+        <div class="row" style="margin:auto">
+          <div class="col" style="text-align: center; padding:8px 15px 8px 15px">
+             <p style="color:blue"><a href="https://www.marathon.tokyo/en/" ><u> Tokyo Marathon </u></a></p>
+          </div>
+          <div class="col" style="text-align: center; padding:8px 15px 8px 15px">
+             <p>Mar, 01, 2020 </p>
+          </div>
+          <div class="col" style="text-align: center; padding:8px 15px 8px 15px">
+             <p id="Tokyo_date"></p>
+          </div>
+         </div>
+
+<!-- Chicago----------->
+       <div class="row" style="margin:auto">
+         <div class="col" style="text-align: center; padding:8px 15px 8px 15px">
+           <p style="color:blue"><a href="https://www.chicagomarathon.com/" ><u> Chicago Marathon </u></a></p>
+         </div>
+         <div class="col" style="text-align: center; padding:8px 15px 8px 15px">
+           <p>Oct, 11, 2020 </p>
+         </div>
+         <div class="col" style="text-align: center; padding:8px 15px 8px 15px">
+          <p id="Chicago_date"></p>
+         </div>
+        </div>
+
+
+<!-- Chicago----------->
+       <div class="row" style="margin:auto">
+         <div class="col" style="text-align: center; padding:8px 15px 8px 15px">
+          <p style="color:blue"><a href="https://www.virginmoneylondonmarathon.com/en-gb/" ><u> London Marathon</u> </a></p>
+         </div>
+         <div class="col" style="text-align: center; padding:8px 15px 8px 15px">
+          <p>Apr, 26, 2020 </p>
+         </div>
+         <div class="col" style="text-align: center; padding:8px 15px 8px 15px">
+          <p id="London_date">ko</p>
+         </div>
+        </div>
+     </div>
+
+ <script>
+ var DateDiff = {
+     inDays: function(d1, d2) {
+         var t2 = d2.getTime();
+         var t1 = d1.getTime();
+         return parseInt((t2-t1)/(24*3600*1000));
+     },
+     inMonths: function(d1, d2) {
+         var d1Y = d1.getFullYear();
+         var d2Y = d2.getFullYear();
+         var d1M = d1.getMonth();
+         var d2M = d2.getMonth();
+         return (d2M+12*d2Y)-(d1M+12*d1Y);
+     },}
+
+     var Berlin = "Sep, 27, 2020";  var Berlin = new Date(Berlin);
+      var Boston = "Apr, 20, 2020";  var Boston = new Date(Boston);
+       var NewYork = "Nov, 01, 2020";  var NewYork = new Date(NewYork);
+        var Tokyo = "Mar, 01, 2020";  var Tokyo = new Date(Tokyo);
+         var Chicago = "Oct, 11, 2020";  var Chicago = new Date(Chicago);
+          var London = "Apr, 26, 2020";  var London = new Date(London);
+ var Today = new Date();
+
+document.getElementById("Berlin_date").innerHTML = DateDiff.inDays(Today, Berlin);
+document.getElementById("Boston_date").innerHTML = DateDiff.inDays(Today, Boston);
+document.getElementById("NewYork_date").innerHTML = DateDiff.inDays(Today, NewYork);
+document.getElementById("Tokyo_date").innerHTML = DateDiff.inDays(Today, Tokyo);
+document.getElementById("Chicago_date").innerHTML = DateDiff.inDays(Today, Chicago);
+document.getElementById("London_date").innerHTML = DateDiff.inDays(Today, London);
+
+ </script>
+
+
+
+<div id="child_container" class="second"
+style="
+ margin:20px auto auto auto;  border: 4px solid #0099ff; background:white;
+ color:white;
+ border-radius: 30px 10px;
+ background-color: rgb(0, 0, 0);
+ background-color: rgba(0, 0, 0, 0.6);
+ filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);
+ -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)"">
+
+ <div class="row">
+   <div class="col-sm" style="text-align: center">
+    <h3 style="margin:2px">Calculate mph in km/h and vice versa.</h3>
+   </div>
+  </div>
+
+   <div class="row">
+     <div class="col-sm" style="text-align: center">
+       <div>
+         <input type="radio" name="mph" id="kmhToMph"checked=""/>
+          <label for="kmhToMph">km/h in mph</label>
+       </div>
+     </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm" style="text-align: center">
+      <div>
+        <input type="radio" name="mph" id="mphToKmh" />
+         <label for="mphToKmh">mph in km/h</label>
+      </div>
+    </div>
+ </div>
+
+   <div class="row">
+     <div class="col-sm" style="text-align: center">
+       <input style="margin:0px; padding:5px; text-align: center" type="number" name="calcValue" id="calcValue" pattern="[0-9]" placeholder="0.00" />
+       <input style="margin:0px" type="submit" name="mph" class="btn btn-primary"  id="calculate" checked="" value="Calculate"/>
+    </div>
+   </div>
+
+  <div style="text-align:center; margin-top:10px" class="result"><h5 id="result">Result: <!-- -->0.00<!-- --> <!-- -->km/h</h5></div>
+ </div>
+
+<script>
+
+$("#calculate").click(function() {
+
+var metric_distance= 1.60934;
+var speed = document.getElementById("calcValue").value;
+
+if (document.getElementById("mphToKmh").checked) {
+  var result = speed * metric_distance;
+  var unit = " km/h"
+}
+else if(document.getElementById("kmhToMph").checked) {
+  var result = speed / metric_distance;
+  var unit = " mph"
+};
+
+result_final = result.toFixed(2);
+document.getElementById("result").innerHTML = "Result: " + result_final + unit;
 });
-
-//Distance Pace Radio Button
-$("#metric_distance_kilometers_label" ).click(function() {
-document.getElementById("distance_legende").innerHTML = 'km';
-});
-
-
-function check(e,value)
-{
-    //Check Charater
-    var unicode=e.charCode? e.charCode : e.keyCode;
-    if (value.indexOf(".") != -1)if( unicode == 46 )return false;
-    if (unicode!=8)if((unicode<48||unicode>57)&&unicode!=46)return false;
-}
-
-////////////// Function for Distance
-function checkLength_distance()
-{
-    var fieldLength = document.getElementById('distance_input').value.length;
-
-    if(fieldLength <= 4){
-        return true;
-    }
-    else
-    {
-        var str = document.getElementById('distance_input').value;
-        str = str.substring(0, str.length - 1);
-        document.getElementById('distance_input').value = str;
-    }
-}
-
-////////////// Functions for Duration - HOURS / MIN / SEC
-function checkLength_hours()
-{
-    var fieldLength = document.getElementById('hours_field').value.length;
-    if(fieldLength <= 2){
-        return true;
-    }
-    else
-    {
-        var str = document.getElementById('hours_field').value;
-        str = str.substring(0, str.length - 1);
-        document.getElementById('hours_field').value = str;
-    }
-}
-
-function checkLength_minutes()
-{
-    var fieldLength = document.getElementById('minutes_field').value.length;
-    if(fieldLength <= 2){
-        return true;
-    }
-    else
-    {
-        var str = document.getElementById('minutes_field').value;
-        str = str.substring(0, str.length - 1);
-        document.getElementById('minutes_field').value = str;
-    }
-}
-
-function checkLength_seconds()
-{
-    var fieldLength = document.getElementById('seconds_field').value.length;
-    if(fieldLength <= 2){
-        return true;
-    }
-    else
-    {
-        var str = document.getElementById('seconds_field').value;
-        str = str.substring(0, str.length - 1);
-        document.getElementById('seconds_field').value = str;
-    }
-}
 </script>
-</form>
-<button type="submit" form="main_form" style="width:80%; height:50px; margin:10px auto 10px auto" class="btn btn-default btn-block btn-lg" value="Submit">Calculate</button>
 
+</div>
+
+<div id="child_container"
+ style="
+  margin:20px auto auto auto;  border: 4px solid #0099ff; background:white;
+  border-radius: 10px 10px;
+  background-color: rgb(0, 0, 0);
+  /* RGBa with 0.6 opacity */  background-color: rgba(0, 0, 0, 0.6);
+  /* For IE 5.5 - 7*/  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);
+  /* For IE 8*/  -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";
+ ">
+
+<p style="color:#F0FFFF; padding:10px"><b>Note:</b> In running, pace is usually defined as the number of minutes it takes to cover a mile or kilometer. Pacing is often a critical aspect of endurance events. Some coaches advocate training at a combination of specific paces related to one's fitness in order to stimulate various physiological improvements.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<?php include("_includes/footer.php") ?>
 </body>
