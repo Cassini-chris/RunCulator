@@ -1,34 +1,15 @@
+<!DOCTYPE html>
 <?php error_reporting(0);?>
 
-<!DOCTYPE html>
 <html lang="en">
-
   <head>
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <title>RunCulator</title>
 
-    <?php // error_reporting(0); // Turn off all error reporting
+    <?php // Database Connection & Visitor Browser Data
           require_once('connection/runculator_database_connection.php');
-          session_start();
-
-          // get user details
-                  $user_agent = $_SERVER['HTTP_USER_AGENT']; //user browser
-                  $ip_address = $_SERVER["REMOTE_ADDR"];     // user ip adderss
-                  $page_name = $_SERVER["SCRIPT_NAME"];      // page the user looking
-
-
-                    function isMobileDevice() {
-                        return preg_match("/(android|avantgo|blackberry|bolt|boost|cricket|docomo|fone|hiptop|mini|mobi|palm|phone|pie|tablet|up\.browser|up\.link|webos|wos)/i", $_SERVER["HTTP_USER_AGENT"]);
-                    }
-                    if(isMobileDevice()){
-                        $device_type =  "mobile";
-                    }
-                    else {
-                        $device_type= "desktop";
-                    }
+          require_once('_includes/get_visitor_data.php');
     ?>
 
     <link rel="apple-touch-icon" sizes="180x180" href="_images/favicon/apple-touch-icon.png">
@@ -39,14 +20,30 @@
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
 
-    <!-- Bootstrap ORIGINAL -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="_javascript/picker.js"></script>
+    <!-- DEPENDENCIES & CSS -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <!-- Font -->
+    <link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
+
+    <!-- Analytics -->
+    <?php include_once("_includes/analytics.php") ?>
+
+    <!-- New Nav Bar -->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
     <link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link href="css/pace2.css" rel="stylesheet" type="text/css" >
+    <link href="css/pace2.css" rel="stylesheet" type="text/css">
 
     <?php // Variables
     if(isset($_GET['time_hour'])) {$time_hour = $_GET['time_hour'];} else {$time_hour=0;}
@@ -105,12 +102,26 @@
     $pace_mih_sec = gmdate('s',(($total_time / ($distance*$metric_distance))*$metric_pace));}
     ?>
 
-<?php include_once("_includes/analytics.php") ?>
 </head>
 
-<body background="_images/background.jpg" style="background-size:cover">
+<body background="_images/background.jpg"
+   style="background-size:cover;
+          height: 100%;
+          background-position: center;
+          background-repeat: no-repeat">
 
-  <?php include("_includes/navigation.php") ?>
+<style>
+  html {
+  background: url(images/bg.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 100%;
+}
+</style>
+
+  <?php include("_includes/navigation2.php") ?>
    <?php //include("_includes/pa_antiadblock_2902714.php") ?>
      <?php //include("_includes/pa_antiadblock_2902793.php") ?>
          <?php //include("_includes/pa_antiadblock_2902878.php") ?>
@@ -120,11 +131,9 @@
 
 
 
-
-
 <!-- Advertisement------------------------------------------------------------------------------------------------->
-<!-- Advertisement------------------------------------------------------------------------------------------------->
-<script type="text/javascript" src="//deloplen.com/apu.php?zoneid=2902722" async data-cfasync="false"></script>
+<!-- Advertisement-------------------------------------------------------------------------------------------------
+
 
   <div id="child_container"
    style="
@@ -144,7 +153,7 @@
      </div>
     </div>
   </div>
-  <!-- Advertisement------------------------------------------------------------------------------------------------->
+   Advertisement------------------------------------------------------------------------------------------------->
   <!-- Advertisement------------------------------------------------------------------------------------------------->
 
 
@@ -243,24 +252,20 @@
 
 <!--DISTANCE !!!!!-------------------------->
 <div id="distance">
-
-
-
-
   <div style="width:80%; margin:10px auto auto auto; color:white" class="input-icon input-icon-right">
 
     <div class="btn-group">
       <button id="event_run" type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         Select Event
       </button>
-            <ul class="dropdown-menu" role="menu"  aria-labelledby="dropdownMenu">
-               <li><a tabindex="-1" >1 mile</a></li>
-               <li><a tabindex="-1" >5k</a></li>
-               <li><a tabindex="-1" >10k</a></li>
-               <li><a tabindex="-1" >Half Marathon</a></li>
-               <li><a tabindex="-1" >Marathon</a></li>
-               <li><a tabindex="-1" >100k</a></li>
-               <li><a tabindex="-1" >100 miles</a></li>
+            <ul   class="dropdown-menu" role="menu"  aria-labelledby="dropdownMenu">
+               <li><a style="text-align:left; color:#007bff; padding-left:7px"class="dropdown-item" tabindex="-1">1 mile</a></li>
+               <li><a style="text-align:left; color:#007bff; padding-left:7px"class="dropdown-item" tabindex="-1" >5k</a></li>
+               <li><a style="text-align:left; color:#007bff; padding-left:7px"class="dropdown-item" tabindex="-1">10k</a></li>
+               <li><a style="text-align:left; color:#007bff; padding-left:7px"class="dropdown-item" tabindex="-1">Half Marathon</a></li>
+               <li><a style="text-align:left; color:#007bff; padding-left:7px"class="dropdown-item" tabindex="-1" >Marathon</a></li>
+               <li><a style="text-align:left; color:#007bff; padding-left:7px"class="dropdown-item" tabindex="-1" >100k</a></li>
+               <li><a style="text-align:left; color:#007bff; padding-left:7px"class="dropdown-item" tabindex="-1" >100 miles</a></li>
             </ul>
         </div>
 
@@ -284,7 +289,7 @@
   if (entry =="10k")            {document.getElementById("distance_input").value = 10 ;}
   if (entry =="Half Marathon")  {document.getElementById("distance_input").value = 21.1 ;}
   if (entry =="Marathon")       {document.getElementById("distance_input").value = 42.195 ; }
-  if (entry =="100k")  {document.getElementById("distance_input").value = 100 ;}
+  if (entry =="100k")           {document.getElementById("distance_input").value = 100 ;}
   if (entry =="100 miles")       {document.getElementById("distance_input").value = 160.93 ; }
     });
     });
@@ -292,9 +297,15 @@
 
 
       <label for="inputState">
-          <span  id="distance_legende_main" style="font-weight:bold; font-size:20px; ">Distance in <?php if($metric_distance==1){echo ("km");} else{echo ("mi");} ?></span>
+          <span  id="distance_legende_main" style="font-weight:bold; font-size:20px">
+             Distance in
+           <?php if($metric_distance==1){echo ("km");} else{echo ("mi");} ?>
+          </span>
       </label>
-      <i id="distance_legende" style="color:black; font-size:40px; color:grey; text-align:right; padding-right:60px"><?php if($metric_distance==1){echo ("km");} else{echo ("mi");} ?></i>
+      <i id="distance_legende" style="color:black; font-size:40px; color:grey; text-align:right; padding-right:60px">
+        <?php if($metric_distance==1){echo ("km");} else{echo ("mi");} ?>
+     </i>
+
       <input onKeyPress="return check(event,value)"
              onInput="checkLength_distance()" id="distance_input"
              onClick="this.select();"
@@ -305,16 +316,41 @@
   </div>
 
 
- <div class="btn-group" data-toggle="buttons" style="display:block; margin: 0 auto; width:80%; text-align:center; height:80px" >
-   <label id="metric_distance_kilometers_label"class="btn btn-primary <?php if($metric_distance==1) {?> active <?php ;} ?>"style="width:50%; ">
-     <input id="metric_distance_kilometers" type="radio" name="metric_distance"
-            value="km" <?php if($metric_distance==1) {?> checked <?php ;} ?>> Kilometers<br>
+ <div class="btn-group" data-toggle="buttons"
+      style="display:flex;
+             padding-top:2px;
+             margin: 0 auto;
+             width:80%;
+             text-align:center;
+             height:45px">
+
+   <label style="width:50%"
+          id="metric_distance_kilometers_label"class="btn btn-primary
+          <?php if($metric_distance==1) {?> active <?php ;}?>"
+   >
+
+   <input id="metric_distance_kilometers"
+          type="radio"
+          name="metric_distance"
+          value="km"
+          <?php if($metric_distance==1) {?> checked <?php ;} ?>
+   > Kilometers
    </label>
 
-   <label id="metric_distance_miles_label" class="btn btn-primary <?php if($metric_distance==1.60934) {?> active <?php ;} ?>" style="width:50%;">
-     <input  id="metric_distance_miles" type="radio" name="metric_distance"
-             value="mi" <?php if($metric_distance==1.60934) {?> checked <?php ;} ?>> Miles
+   <label id="metric_distance_miles_label"
+          class="btn btn-primary
+          <?php if($metric_distance==1.60934) {?> active <?php ;} ?>"
+          style="width:50%"
+   >
+
+   <input id="metric_distance_miles"
+          type="radio"
+          name="metric_distance"
+          value="mi"
+          <?php if($metric_distance==1.60934) {?> checked <?php ;} ?>
+   > Miles
    </label>
+
  </div>
 </div>
 
@@ -322,8 +358,10 @@
 
   <!-- PACE !!!!!!!!!!!!!!!!!!!!!!!!!!!!----------------------->
   <div id="pace2" style="width:100%;">
-      <div style="width:80%; margin:auto; color:red;">
-          <span   id="pace_legende_main" style="font-weight:bold; font-size:20px">>>>>> Pace per <?php if($metric_pace==1){echo ("km");} else{echo ("mi");} ?></span>
+      <div style="width:80%; margin:auto; color:red">
+          <span id="pace_legende_main" style="font-weight:bold; font-size:20px">>>>>> Pace per
+                <?php if($metric_pace==1){echo ("km");} else{echo ("mi");} ?>
+          </span>
       </div>
 
       <div id="time" style="width:80%; margin:auto;height:auto; color:red;">
@@ -355,29 +393,23 @@
             </div>
 
 
-      <div class="btn-group" data-toggle="buttons" style="display: block; margin : 0 auto; width:80%; text-align:center; height:80px" >
+      <div class="btn-group" data-toggle="buttons" style="display: flex; margin : 0 auto; width:80%; text-align:center; height:45px" >
           <label  id="radio_pace_km_label" class="btn btn-primary <?php if($metric_pace==1) {?> active <?php ;} ?>"style="width:50%;">
-            <input style=" font-size:40px; display: block; margin:0 auto; width:80%; text-align:center;"
-                   type="radio" name="metric_pace" value="km" <?php if($metric_pace==1) {?> checked <?php ;} ?>> Pace per km<br>
+            <input type="radio" name="metric_pace" value="km" <?php if($metric_pace==1) {?> checked <?php ;} ?>> Pace per km<br>
           </label>
 
           <label  id="radio_pace_miles_label" class="btn btn-primary <?php if($metric_pace==1.60934) {?> active <?php ;} ?>" style="width:50%;">
             <input id="radio_pace_miles" type="radio" name="metric_pace" value="mi" <?php if($metric_pace==1.60934) {?> checked <?php ;} ?> > Pace per mi
           </label>
       </div>
-
-
  </div>
 
 
   <div style="width:80%; margin:auto;  color:grey;">
-      <span   id="pace_legende_main2" style="font-weight:bold; font-size:20px; "> Pace in  <?php if($metric_pace==1){echo ("km/h: $kmh_final_padded");} else{echo ("mph: $mih_final_padded");} ?></span>
+      <span id="pace_legende_main2" style="font-weight:bold; font-size:20px; "> Pace in
+           <?php if($metric_pace==1){echo ("km/h: $kmh_final_padded");} else{echo ("mph: $mih_final_padded");} ?>
+      </span>
   </div>
-
-
-
-
-
 
 <script type="text/javascript">
 
@@ -413,8 +445,6 @@ $("#radio_pace_km_label" ).click(function() {
 document.getElementById("pace_legende_main").innerHTML = '>>>>> Pace per km';
 });
 
-
-
 $("#radio_pace_miles_label" ).click(function() {
 document.getElementById("pace_legende_main2").innerHTML = 'Pace in mph: <?php if($metric_pace!=1){echo ("$kmh_final_padded");} else{echo ("$mih_final_padded");} ?>';
 // alert( "Handler for .click() called." );
@@ -424,10 +454,6 @@ document.getElementById("pace_legende_main2").innerHTML = 'Pace in mph: <?php if
 $("#radio_pace_km_label" ).click(function() {
 document.getElementById("pace_legende_main2").innerHTML = 'Pace in km/h: <?php if($metric_pace==1){echo ("$kmh_final_padded");} else{echo ("$mih_final_padded");} ?>';
 });
-
-
-
-
 
 
 function check(e,value)
@@ -499,13 +525,10 @@ function checkLength_seconds()
 </script>
 </form>
 
-
-
 <button type="submit"  name="submit_upload" form="main_form" style="width:80%; height:50px; margin:10px auto 10px auto" class="btn btn-default btn-block btn-lg" value="Submit">Calculate</button>
 </div>
 
+<?php include("_includes/footer2.php") ?>
 
-
-
-<?php include("_includes/footer.php") ?>
 </body>
+</html>
