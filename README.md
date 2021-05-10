@@ -1,7 +1,6 @@
 # RunCulator
 
-This repo holds the code for a Disney-Princess-Classification Model using Transfer Learning via TensorFlow Hub modules.
-The Model is deployed on Google App Engine and uses Flask as a microframework.
+This repo holds the code for RunCulator.
 
 ## [>> Final Application](https://www.runculator.com/")
 
