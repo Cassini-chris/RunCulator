@@ -16,4 +16,4 @@ RunCulator is an app that provides an Easy to use and Mobile Friendly >> Pace, D
 #### Who Uses RunCulator?
 Sports calculators are useful for both new athletes and professional athletes.
 
-![alt text](https://github.com/cassini-chris/RunCulator/blob/main/_GITHUB/readme/images/run_back.png?raw=true)
+![alt text](https://github.com/Cassini-chris/RunCulator/blob/master/_GITHUB/readme/images/run_back.png?raw=true)
