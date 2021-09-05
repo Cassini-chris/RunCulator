@@ -38,6 +38,13 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
+    <script>
+      (adsbygoogle = window.adsbygoogle || []).push({
+        google_ad_client: "ca-pub-3842615578259450",
+        enable_page_level_ads: true
+      });
+    </script>
+
     <style>
       a:link {color:white; text-decoration: none;}
       a:visited {text-decoration: none}
@@ -54,6 +61,11 @@
  <?php // error_reporting(0); // Turn off all error reporting
        require_once('connection/runculator_database_connection.php');
  ?>
+
+  <?php #include("_includes/pa_antiadblock_2902714.php") ?>
+    <?php #include("_includes/pa_antiadblock_2902793.php") ?>
+        <?php #include("_includes/pa_antiadblock_2902878.php") ?>
+
 
 <!-- HEADING TITLE !----------------------->
 <div id="parent_container">
@@ -372,7 +384,7 @@ style="
  $today = date("Y-m-d");
 
  // Check connection
- $query =  "YOUR QUERY";
+ $query =  "SELECT * FROM dbs45866.events_table where event_type = 'Trail' AND date > '$today' ORDER BY date ASC";
  $result = mysqli_query($runculator_database, $query);
 
  if (mysqli_num_rows($result) > 0) {
@@ -498,7 +510,7 @@ style="
 
      <?php //<!--Query Database-->
      $today = date("Y-m-d");
-     $query =  "YOUR QUERY";
+     $query =  "SELECT * FROM dbs45866.events_table WHERE event_type = 'Marathon' AND date > '$today' ORDER BY date ASC";
      $result = mysqli_query($runculator_database, $query);
 
      if (mysqli_num_rows($result) > 0) {
@@ -618,7 +630,9 @@ style="
 
      // Check connection
      $today = date("Y-m-d");
-     $query =  "YOUR QUERY";
+     $query =  "SELECT * FROM dbs45866.events_table
+                WHERE event_type = 'IRONMAN' AND date > '$today'
+                ORDER BY date ASC ";
      $result = mysqli_query($runculator_database, $query);
 
      if (mysqli_num_rows($result) > 0) {
